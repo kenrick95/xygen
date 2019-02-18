@@ -10,5 +10,7 @@ Idea
 
 Input text, display as baudot code, in Coldplay's X&Y style.
 
-Inspiration: put a link...
+https://themostorganicdesign.files.wordpress.com/2013/10/coldplay-x-y-41.jpg
+
+Inspiration: http://ditonus.com/coldcode/
 
