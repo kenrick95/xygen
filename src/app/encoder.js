@@ -11,9 +11,12 @@ class Encoder {
    * @return Array<Array<Array<keyof COLORS>>>>
    */
   encode(input) {
-    return input.split("").map(char => {
-      return this._map.get(char) || []
-    })
+    return input
+      .split("")
+      .map(char => {
+        return this._map.get(char.toUpperCase()) || null
+      })
+      .filter(Boolean)
   }
 }
 
