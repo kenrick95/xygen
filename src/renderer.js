@@ -1,6 +1,6 @@
-import { SEP_COLOR } from "./constants.js"
-
 //@ts-check
+
+import { SEP_COLOR } from "./constants.js"
 
 /**
  * Terminologies:

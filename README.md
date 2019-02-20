@@ -1,16 +1,23 @@
 # xygen
 
-Coldplay X&Y art generator
+[Coldplay X&Y album art](https://en.wikipedia.org/wiki/X&Y) generator
 
-Modern browser is required. IE is not supported. Tested on Firefox 65.
+## Compatibility
 
-Vanilla JS (ES6+).
+Modern browser is required. Only tested on Firefox 65.
 
-Idea
+Because this project is written in totally Vanilla JS (ES2015+).
 
-Input text, display as baudot code, in Coldplay's X&Y style.
+## Idea
 
-https://themostorganicdesign.files.wordpress.com/2013/10/coldplay-x-y-41.jpg
+Input text, encode as [Baudot code](https://en.wikipedia.org/wiki/Baudot_code), in Coldplay's X&Y style.
 
-Inspiration: http://ditonus.com/coldcode/
+Coldplay X&Y album booklet includes a page where they provide the mapping ([ref](https://themostorganicdesign.files.wordpress.com/2013/10/coldplay-x-y-41.jpg)). This looks similar enough to "ITA2" standard, with some weirdness in the special characters.
 
+Similar project:
+
+- [Coldcode](http://ditonus.com/coldcode/)
+
+## License
+
+MIT License
