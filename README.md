@@ -2,6 +2,8 @@
 
 [Coldplay X&Y album art](https://en.wikipedia.org/wiki/X&Y) generator
 
+[Demo](https://kenrick95.github.io/xygen/index.html)
+
 ## Compatibility
 
 Modern browser is required. Only tested on Firefox 65.
