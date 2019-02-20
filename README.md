@@ -21,3 +21,7 @@ Similar project:
 ## License
 
 MIT License
+
+## Example
+
+[![Example](./sample.png)](https://en.wikipedia.org/wiki/Fix_You)
