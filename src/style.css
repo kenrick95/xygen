@@ -34,3 +34,13 @@ body {
 .field + .field {
   margin-top: 10px;
 }
+#save {
+  display: inline-block;
+  background: #eee;
+  color: black;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+#save:hover {
+  background: #e0e0e0;
+}

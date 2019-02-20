@@ -31,6 +31,10 @@ class Main {
     this._renderer.bgcolor = newColor
     this._main.style.backgroundColor = newColor
   }
+
+  get dataUrl() {
+    return this._canvas.toDataURL("image/png")
+  }
 }
 
 ;(function() {
@@ -43,6 +47,13 @@ class Main {
 
     document.getElementById("bgcolor").addEventListener("input", e => {
       main.bgcolor = e.target.value
+    })
+
+    const saveButton = document.getElementById("save")
+
+    saveButton.addEventListener("click", e => {
+      var dataURL = main.dataUrl
+      saveButton.href = dataURL
     })
   })
 })()
