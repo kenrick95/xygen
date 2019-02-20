@@ -16,7 +16,16 @@ class Encoder {
       .map(char => {
         return this._map.get(char.toUpperCase()) || null
       })
-      .filter(Boolean)
+      .reduce((prevValue, currentValue) => {
+        if (
+          prevValue.length > 0 &&
+          prevValue[prevValue.length - 1] === null &&
+          currentValue === null
+        ) {
+          return prevValue
+        }
+        return [...prevValue, currentValue]
+      }, [])
   }
 }
 

@@ -36,10 +36,6 @@ const BLOCK_HEIGHT = 4
 /**
  * in px
  */
-const INTER_ITEM_PADDING = 0
-/**
- * in px
- */
 const PADDING = 10
 /**
  * in px
@@ -89,6 +85,13 @@ class Renderer {
     for (let i = 0; i < this._code.length; i++) {
       const item = this._code[i]
 
+      if (!item) {
+        // null means space
+        x += CELL_WIDTH * BLOCK_WIDTH
+
+        continue
+      }
+
       // Paint separator between dot[1] and dot[2]
       this._fillRect(
         x + CELL_WIDTH + 1,
@@ -118,8 +121,6 @@ class Renderer {
         }
         x += CELL_WIDTH * BLOCK_WIDTH
       }
-
-      x += INTER_ITEM_PADDING
     }
   }
 }
