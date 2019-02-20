@@ -3,6 +3,17 @@ import { SEP_COLOR } from "./constants.js"
 //@ts-check
 
 /**
+ * Terminologies:
+ *
+ * - pixel: browser pixel
+ * - cell: 7x7 px
+ * - block: 4x4 cell, single unit of color
+ * - dot: 2 blocks, single "dot" of the 5 digit Baudot codes
+ * - char: 5 dots (one row)
+ * - item: group of char, for alphabets, it's one char; but for special characters and number, it's two chars
+ */
+
+/**
  * in px
  */
 const CELL_WIDTH = 7
@@ -35,16 +46,20 @@ const PADDING = 10
  */
 const BLOCK_PADDING = 4
 /**
- * between block[1] and block[2] of each item
+ * between dot[1] and dot[2] of each item
  * in px
  */
 const SECOND_PADDING = 16
 
 class Renderer {
-  constructor(context, { width, height } = { width: 320, height: 480 }) {
+  constructor(
+    context,
+    { width, height, bgcolor } = { width: 320, height: 480, bgcolor: "#000" }
+  ) {
     this._context = context
     this._width = width
     this._height = height
+    this._bgcolor = bgcolor
 
     this._code = []
   }
@@ -53,52 +68,52 @@ class Renderer {
     this._code = newCode
     this.render()
   }
+  set bgcolor(newBgcolor) {
+    this._bgcolor = newBgcolor
+    this.render()
+  }
+
+  _fillRect(x, y, w, h, color) {
+    this._context.save()
+    this._context.beginPath()
+    this._context.fillStyle = color
+    this._context.fillRect(x, y, w, h)
+    this._context.restore()
+  }
 
   render() {
-    this._context.clearRect(0, 0, this._width, this._height)
+    this._fillRect(0, 0, this._width, this._height, this._bgcolor)
 
     let x = PADDING
 
     for (let i = 0; i < this._code.length; i++) {
       const item = this._code[i]
 
-      {
-        this._context.save()
-        this._context.beginPath()
-        this._context.fillStyle = SEP_COLOR.ACTIVE
-        this._context.fillRect(
-          x + CELL_WIDTH + 1,
-          PADDING + CELL_HEIGHT * BLOCK_HEIGHT * 4 + BLOCK_PADDING * 2 + 4,
-          14 + (item.length - 1) * CELL_WIDTH * BLOCK_WIDTH,
-          3
-        )
-        this._context.restore()
-      }
+      // Paint separator between dot[1] and dot[2]
+      this._fillRect(
+        x + CELL_WIDTH + 1,
+        PADDING + CELL_HEIGHT * BLOCK_HEIGHT * 4 + BLOCK_PADDING * 2 + 4,
+        14 + (item.length - 1) * CELL_WIDTH * BLOCK_WIDTH,
+        3,
+        SEP_COLOR.ACTIVE
+      )
 
       for (let j = 0; j < item.length; j++) {
         const char = item[j]
         for (let k = 0; k < char.length; k++) {
           const dot = char[k]
           for (let l = 0; l < dot.length; l++) {
-            const block = dot[l]
-            this._context.save()
-            this._context.beginPath()
-            this._context.fillStyle = block
-            // x =
-            //   PADDING +
-            //   CELL_WIDTH * BLOCK_WIDTH * i +
-            //   CELL_WIDTH * BLOCK_WIDTH * j +
-            //   INTER_ITEM_PADDING * i
-            this._context.fillRect(
+            const blockColor = dot[l]
+            this._fillRect(
               x,
               PADDING +
                 CELL_HEIGHT * BLOCK_HEIGHT * (k * dot.length + l) +
                 BLOCK_PADDING * k +
                 (k >= 2 ? SECOND_PADDING : 0),
               CELL_WIDTH * BLOCK_WIDTH,
-              CELL_HEIGHT * BLOCK_HEIGHT
+              CELL_HEIGHT * BLOCK_HEIGHT,
+              blockColor
             )
-            this._context.restore()
           }
         }
         x += CELL_WIDTH * BLOCK_WIDTH

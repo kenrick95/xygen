@@ -1,0 +1,36 @@
+html {
+  line-height: 1.15;
+}
+html,
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+body {
+  /* https://css-tricks.com/snippets/css/system-font-stack/ */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #051724;
+}
+#sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+}
+.field {
+  display: block;
+}
+.field + .field {
+  margin-top: 10px;
+}
